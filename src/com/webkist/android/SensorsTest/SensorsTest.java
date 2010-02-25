@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -11,18 +12,28 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class SensorsTest extends ListActivity {
+	private List<Sensor> sensors;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		SensorManager sm = (SensorManager) getSystemService(SENSOR_SERVICE);
-		List<Sensor> sensors = sm.getSensorList(Sensor.TYPE_ALL);
+		sensors = sm.getSensorList(Sensor.TYPE_ALL);
 		ArrayAdapter<Sensor> adapter = new MyAdapter(this, sensors);
 		setListAdapter(adapter);
 	}
+
+    public void onListItemClick(ListView l, View v, int position, long id) {
+    	Sensor s = sensors.get(position);
+    	
+        setResult(RESULT_OK, new Intent().setData(uri));
+        finish();
+}
 
 	private class MyAdapter extends ArrayAdapter<Sensor> {
 
