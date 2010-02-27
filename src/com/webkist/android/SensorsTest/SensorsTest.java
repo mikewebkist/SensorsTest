@@ -30,8 +30,7 @@ public class SensorsTest extends ListActivity {
 
     public void onListItemClick(ListView l, View v, int position, long id) {
     	Sensor s = sensors.get(position);
-    	
-        setResult(RESULT_OK, new Intent().setData(uri));
+//        setResult(RESULT_OK, new Intent().setData(uri));
         finish();
 }
 

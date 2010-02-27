@@ -31,8 +31,8 @@ public class SensorDisplay extends Activity implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		((TextView) findViewById(R.id.Temp)).setText(String.format("(%.1f, %.1f, %.1f)", event.values[0], event.values[1],
-				event.values[2]));
+//		((TextView) findViewById(R.id.Temp)).setText(String.format("(%.1f, %.1f, %.1f)", event.values[0], event.values[1],
+//				event.values[2]));
 	}
 
 }
