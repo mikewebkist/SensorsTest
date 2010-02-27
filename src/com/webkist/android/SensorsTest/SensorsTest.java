@@ -28,11 +28,11 @@ public class SensorsTest extends ListActivity {
 		setListAdapter(adapter);
 	}
 
-    public void onListItemClick(ListView l, View v, int position, long id) {
-    	Sensor s = sensors.get(position);
-//        setResult(RESULT_OK, new Intent().setData(uri));
-        finish();
-}
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Sensor s = sensors.get(position);
+		// setResult(RESULT_OK, new Intent().setData(uri));
+		finish();
+	}
 
 	private class MyAdapter extends ArrayAdapter<Sensor> {
 
@@ -46,11 +46,31 @@ public class SensorsTest extends ListActivity {
 				convertView = getLayoutInflater().inflate(android.R.layout.two_line_list_item, parent, false);
 			}
 
-			((TextView) convertView.findViewById(android.R.id.text1)).setText(sensor.getVendor());
+			String type;
+			switch (sensor.getType()) {
+				case Sensor.TYPE_ACCELEROMETER:
+					type = "Accelerometer"; break;
+				case Sensor.TYPE_GYROSCOPE:
+					type = "Gyroscope"; break;
+				case Sensor.TYPE_LIGHT:
+					type = "Light"; break;
+				case Sensor.TYPE_MAGNETIC_FIELD:
+					type = "Magnetic Field"; break;
+				case Sensor.TYPE_ORIENTATION:
+					type = "Orientation"; break;
+				case Sensor.TYPE_PRESSURE:
+					type = "Pressure"; break;
+				case Sensor.TYPE_PROXIMITY:
+					type = "Proximity"; break;
+				case Sensor.TYPE_TEMPERATURE:
+					type = "Temperature"; break;
+				default:
+					type = String.format("Unknown Sensor: %d", sensor.getType());
+			}
+			((TextView) convertView.findViewById(android.R.id.text1)).setText(type);
 			TextView tv = (TextView) convertView.findViewById(android.R.id.text2);
 			tv.setGravity(Gravity.RIGHT);
-			tv.setText(String.format("max=%.2f, res=%.2f, type=%d", sensor.getMaximumRange(), sensor.getResolution(), sensor
-					.getType()));
+			tv.setText(String.format("max=%f, res=%f", sensor.getMaximumRange(), sensor.getResolution()));
 
 			return convertView;
 
