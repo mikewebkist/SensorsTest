@@ -1,0 +1,5 @@
+Basic Android sensor diagnostics and access. Queries the available sensors
+and displays their ranges. Selecting a sensor takes you to a raw feed of
+the sensor's output (once I have that part working. shortly.)
+
+To build, grab a copy of everything and import into Eclipse.
